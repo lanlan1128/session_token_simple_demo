@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+  </head>
+  <body>
+    <div>
+      用户名：<span><%= username %> </span> <a href="/logout">退出登录</a>
+
+      <button id="transfer">转账</button>
+    </div>
+  </body>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script>
+    var btn = document.querySelector("#transfer");
+
+    btn.onclick = function () {
+      axios.post("/api/transfer").then((data) => {
+        alert(data.data);
+      });
+    };
+  </script>
+</html>

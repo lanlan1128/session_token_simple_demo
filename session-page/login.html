@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+    <style type="text/css"></style>
+  </head>
+  <body>
+    <form>
+      用户名: <input type="text" name="username" /> <br />
+      密码: <input type="password" name="pwd" />
+      <input type="button" id="submit" value="Submit" />
+    </form>
+
+    <button id="transfer">转账</button>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+      var btn = document.querySelector("#submit");
+
+      btn.onclick = function () {
+        var username = document.querySelector("input[name=username]").value;
+        var pwd = document.querySelector("input[name=pwd]").value;
+
+        axios
+          .post("/login", {
+            username,
+            pwd,
+          })
+          .then((data) => {
+            if (data.data.retflag) {
+              location.href = "/";
+            } else {
+              alert(data.data.retmsg);
+            }
+          });
+      };
+
+      var btn = document.querySelector("#transfer");
+
+      btn.onclick = function () {
+        axios.post("/api/transfer").then((data) => {
+          alert(JSON.stringify(data.data));
+        });
+      };
+    </script>
+  </body>
+</html>

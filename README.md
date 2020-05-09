@@ -1,0 +1,2 @@
+# session_token_simple_demo
+使用express实现session和token两种登录方式，并且比较两种方式的安全性
